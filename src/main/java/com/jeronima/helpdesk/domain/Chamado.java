@@ -34,8 +34,7 @@ public class Chamado implements Serializable {
         this.dataAbertura = LocalDate.now();
     }
 
-    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, Tecnico tecnico, Cliente cliente) {
-        this.id = id;
+    public Chamado(Prioridade prioridade, Status status, String titulo, Tecnico tecnico, Cliente cliente) {
         this.prioridade = prioridade;
         this.status = status;
         this.titulo = titulo;

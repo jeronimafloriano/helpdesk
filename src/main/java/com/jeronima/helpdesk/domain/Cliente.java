@@ -17,8 +17,8 @@ public class Cliente extends Pessoa {
 
     public Cliente() {}
 
-    public Cliente(Integer id, String nome, String cpf, String email, String senha) {
-        super(id, nome, cpf, email, senha, Perfil.CLIENTE);
+    public Cliente(String nome, String cpf, String email, String senha) {
+        super(nome, cpf, email, senha, Perfil.CLIENTE);
     }
 
     public List<Chamado> getChamados() {
