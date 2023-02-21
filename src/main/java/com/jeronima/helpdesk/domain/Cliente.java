@@ -2,6 +2,7 @@ package com.jeronima.helpdesk.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jeronima.helpdesk.dto.ClienteDto;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -20,6 +21,10 @@ public class Cliente extends Pessoa {
 
     public Cliente(String nome, String cpf, String email, String senha) {
         super(nome, cpf, email, senha, Perfil.CLIENTE);
+    }
+
+    public Cliente(ClienteDto dto) {
+        super(dto.getNome(), dto.getCpf(), dto.getEmail(), dto.getSenha(), Perfil.CLIENTE);
     }
 
     public List<Chamado> getChamados() {
