@@ -1,6 +1,7 @@
 package com.jeronima.helpdesk.controller;
 
 import com.jeronima.helpdesk.domain.Tecnico;
+import com.jeronima.helpdesk.dto.TecnicoDto;
 import com.jeronima.helpdesk.service.TecnicoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,8 @@ public class TecnicoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tecnico> findById(@PathVariable Integer id){
-        return ResponseEntity.ok().body(service.findById(id));
+    public ResponseEntity<TecnicoDto> findById(@PathVariable Integer id){
+        Tecnico tecnico = service.findById(id);
+        return ResponseEntity.ok().body(new TecnicoDto(tecnico));
     }
 }
