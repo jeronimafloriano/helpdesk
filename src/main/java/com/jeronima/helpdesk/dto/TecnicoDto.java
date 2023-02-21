@@ -32,7 +32,7 @@ public class TecnicoDto  {
         this.email = tecnico.getEmail();
         this.senha = tecnico.getSenha();
         this.dataCriacao = tecnico.getDataCriacao();
-        this.perfis = tecnico.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+        this.perfis = tecnico.getPerfis().stream().map(Perfil::getCodigo).collect(Collectors.toSet());
     }
 
     public String getNome() {
@@ -68,7 +68,7 @@ public class TecnicoDto  {
     }
 
     public Set<Perfil> getPerfis() {
-        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+        return perfis.stream().map(Perfil::toEnum).collect(Collectors.toSet());
     }
 
     public void addPerfil(Perfil perfil) {

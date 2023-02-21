@@ -32,7 +32,7 @@ public class ClienteDto {
         this.email = cliente.getEmail();
         this.senha = cliente.getSenha();
         this.dataCriacao = cliente.getDataCriacao();
-        this.perfis = cliente.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+        this.perfis = cliente.getPerfis().stream().map(Perfil::getCodigo).collect(Collectors.toSet());
     }
 
     public String getNome() {
@@ -68,7 +68,7 @@ public class ClienteDto {
     }
 
     public Set<Perfil> getPerfis() {
-        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+        return perfis.stream().map(Perfil::toEnum).collect(Collectors.toSet());
     }
 
     public void addPerfil(Perfil perfil) {

@@ -2,7 +2,6 @@ package com.jeronima.helpdesk.controller;
 
 import com.jeronima.helpdesk.domain.Chamado;
 import com.jeronima.helpdesk.dto.ChamadoDto;
-import com.jeronima.helpdesk.dto.ClienteDto;
 import com.jeronima.helpdesk.service.ChamadoService;
 import com.jeronima.helpdesk.service.ClienteService;
 import com.jeronima.helpdesk.service.TecnicoService;

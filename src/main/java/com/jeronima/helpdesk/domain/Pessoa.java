@@ -28,13 +28,13 @@ public abstract class Pessoa implements Serializable {
     private LocalDate dataCriacao;
 
 
-    public Pessoa(){
+    protected Pessoa(){
         super();
         this.dataCriacao = LocalDate.now();
 
     }
 
-    public Pessoa(String nome, String cpf, String email, String senha, Perfil perfil) {
+    protected Pessoa(String nome, String cpf, String email, String senha, Perfil perfil) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -80,7 +80,7 @@ public abstract class Pessoa implements Serializable {
     }
 
     public Set<Perfil> getPerfis() {
-        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+        return perfis.stream().map(Perfil::toEnum).collect(Collectors.toSet());
     }
 
     public void addPerfil(Perfil perfil) {

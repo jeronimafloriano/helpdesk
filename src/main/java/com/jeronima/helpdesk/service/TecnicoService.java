@@ -7,7 +7,6 @@ import com.jeronima.helpdesk.repository.PessoaRepository;
 import com.jeronima.helpdesk.repository.TecnicoRepository;
 import com.jeronima.helpdesk.exceptions.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,7 +67,7 @@ public class TecnicoService {
         var tecnico = findById(id);
         var chamados = tecnico.getChamados();
 
-        if(chamados.size() > 0 ){
+        if(!chamados.isEmpty()){
             var abertos = chamados.stream().filter(chamado -> chamado.getDataFechamento() == null).count() > 0;
             if(abertos)
                 throw new DataIntegrityViolationException("Técnico possui chamados em aberto que " +

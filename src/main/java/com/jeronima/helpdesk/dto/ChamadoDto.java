@@ -41,7 +41,7 @@ public class ChamadoDto implements Serializable {
         this.observacoes = chamado.getObservacoes();
         this.tecnico = chamado.getTecnico().getId();
         this.nomeTecnico = chamado.getTecnico().getNome();
-        this.cliente = chamado.getCliente().getId();;
+        this.cliente = chamado.getCliente().getId();
         this.nomeCliente = chamado.getCliente().getNome();
     }
 

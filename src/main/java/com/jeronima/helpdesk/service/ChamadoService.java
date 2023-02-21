@@ -2,7 +2,6 @@ package com.jeronima.helpdesk.service;
 
 import com.jeronima.helpdesk.domain.*;
 import com.jeronima.helpdesk.dto.ChamadoDto;
-import com.jeronima.helpdesk.dto.ClienteDto;
 import com.jeronima.helpdesk.exceptions.ObjectNotFoundException;
 import com.jeronima.helpdesk.repository.ChamadoRepository;
 import org.springframework.stereotype.Service;

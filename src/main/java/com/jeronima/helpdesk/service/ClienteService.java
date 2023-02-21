@@ -67,7 +67,7 @@ public class ClienteService {
         var cliente = findById(id);
         var chamados = cliente.getChamados();
 
-        if(chamados.size() > 0 ){
+        if(!chamados.isEmpty()){
             var abertos = chamados.stream().filter(chamado -> chamado.getDataFechamento() == null).count() > 0;
             if(abertos)
                 throw new DataIntegrityViolationException("Técnico possui chamados em aberto que " +
