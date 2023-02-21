@@ -26,4 +26,9 @@ public class TecnicoService {
         var tecnicos = repository.findAll();
         return tecnicos.stream().map(tec -> new TecnicoDto(tec)).collect(Collectors.toList());
     }
+
+    public Tecnico create(TecnicoDto dto) {
+        var tecnico =  new Tecnico(dto.getNome(), dto.getCpf(), dto.getEmail(), dto.getSenha());
+        return repository.save(tecnico);
+    }
 }

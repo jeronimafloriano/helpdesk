@@ -14,6 +14,7 @@ public class TecnicoDto  {
     private String nome;
     private String cpf;
     private String email;
+    private String senha;
     private Set<Integer> perfis = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCriacao;
@@ -24,6 +25,7 @@ public class TecnicoDto  {
         this.nome = tecnico.getNome();
         this.cpf = tecnico.getCpf();
         this.email = tecnico.getEmail();
+        this.senha = tecnico.getSenha();
         this.dataCriacao = tecnico.getDataCriacao();
         this.perfis = tecnico.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
     }
@@ -52,6 +54,14 @@ public class TecnicoDto  {
         this.email = email;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public Set<Perfil> getPerfis() {
         return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
     }
@@ -63,5 +73,6 @@ public class TecnicoDto  {
     public LocalDate getDataCriacao() {
         return dataCriacao;
     }
+
 
 }

@@ -4,11 +4,10 @@ import com.jeronima.helpdesk.domain.Tecnico;
 import com.jeronima.helpdesk.dto.TecnicoDto;
 import com.jeronima.helpdesk.service.TecnicoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,5 +29,13 @@ public class TecnicoController {
     @GetMapping
     public ResponseEntity<List<TecnicoDto>> findAll(){
         return ResponseEntity.ok().body(service.findAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<TecnicoDto> create(@RequestBody TecnicoDto dto){
+        var tecnico = service.create(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .path("/{id}").buildAndExpand(tecnico.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }
