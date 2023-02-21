@@ -7,6 +7,7 @@ import com.jeronima.helpdesk.repository.PessoaRepository;
 import com.jeronima.helpdesk.repository.TecnicoRepository;
 import com.jeronima.helpdesk.exceptions.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,7 +36,7 @@ public class TecnicoService {
         validaCpf(dto.getCpf());
         validaEmail(dto.getEmail());
 
-        var tecnico =  new Tecnico(dto.getNome(), dto.getCpf(), dto.getEmail(), dto.getSenha());
+        var tecnico =  new Tecnico(dto);
         return repository.save(tecnico);
     }
 
@@ -52,4 +53,14 @@ public class TecnicoService {
         });
     }
 
+
+    public Tecnico update(Integer id, TecnicoDto dto) {
+        var tecnico = findById(id);
+        tecnico.setNome(dto.getNome());
+        tecnico.setCpf(dto.getCpf());
+        tecnico.setEmail(dto.getEmail());
+        tecnico.setSenha(dto.getSenha());
+
+        return repository.save(tecnico);
+    }
 }

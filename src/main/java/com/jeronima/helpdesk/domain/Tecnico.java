@@ -2,6 +2,7 @@ package com.jeronima.helpdesk.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jeronima.helpdesk.dto.TecnicoDto;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -21,6 +22,10 @@ public class Tecnico extends Pessoa {
 
     public Tecnico(String nome, String cpf, String email, String senha) {
         super(nome, cpf, email, senha, Perfil.TECNICO);
+    }
+
+    public Tecnico(TecnicoDto dto) {
+        super(dto.getNome(), dto.getCpf(), dto.getEmail(), dto.getSenha(), Perfil.TECNICO);
     }
 
     public List<Chamado> getChamados() {
