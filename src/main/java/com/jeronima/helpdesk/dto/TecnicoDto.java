@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jeronima.helpdesk.domain.Perfil;
 import com.jeronima.helpdesk.domain.Tecnico;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,9 +12,13 @@ import java.util.stream.Collectors;
 
 public class TecnicoDto  {
 
+    @NotNull(message = "Obrigatório informar o NOME.")
     private String nome;
+    @NotNull(message = "Obrigatório informar o CPF.")
     private String cpf;
+    @NotNull(message = "Obrigatório informar o EMAIL.")
     private String email;
+    @NotNull(message = "Obrigatório informar a SENHA.")
     private String senha;
     private Set<Integer> perfis = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")
