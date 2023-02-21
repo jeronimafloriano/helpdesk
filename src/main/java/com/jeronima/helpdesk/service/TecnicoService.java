@@ -63,4 +63,17 @@ public class TecnicoService {
 
         return repository.save(tecnico);
     }
+
+    public void delete(Integer id) {
+        var tecnico = findById(id);
+        var chamados = tecnico.getChamados();
+
+        if(chamados.size() > 0 ){
+            var abertos = chamados.stream().filter(chamado -> chamado.getDataFechamento() == null).count() > 0;
+            if(abertos)
+                throw new DataIntegrityViolationException("Técnico possui chamados em aberto que " +
+                        "ainda não foram encerrados, e por isso não poderá ser deletado.");
+        }
+        repository.deleteById(tecnico.getId());
+    }
 }

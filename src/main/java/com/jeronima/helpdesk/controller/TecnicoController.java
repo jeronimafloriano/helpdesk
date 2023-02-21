@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -44,5 +45,11 @@ public class TecnicoController {
     public ResponseEntity<TecnicoDto> update(@PathVariable Integer id, @Valid @RequestBody TecnicoDto dto){
         var tenico = service.update(id, dto);
         return ResponseEntity.ok().body(new TecnicoDto(tenico));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<TecnicoDto> delete(@PathVariable Integer id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
