@@ -6,6 +6,7 @@ import com.jeronima.helpdesk.exceptions.DataIntegrityViolationException;
 import com.jeronima.helpdesk.repository.PessoaRepository;
 import com.jeronima.helpdesk.repository.TecnicoRepository;
 import com.jeronima.helpdesk.exceptions.ObjectNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +16,13 @@ import java.util.stream.Collectors;
 public class TecnicoService {
     private final TecnicoRepository repository;
     private final PessoaRepository pessoaRepository;
+    private final BCryptPasswordEncoder encoder;
 
-    public TecnicoService(TecnicoRepository repository, PessoaRepository pessoaRepository) {
+    public TecnicoService(TecnicoRepository repository, PessoaRepository pessoaRepository,
+                          BCryptPasswordEncoder encoder) {
         this.repository = repository;
         this.pessoaRepository = pessoaRepository;
+        this.encoder = encoder;
     }
 
     public Tecnico findById(Integer id){
@@ -34,6 +38,7 @@ public class TecnicoService {
     public Tecnico create(TecnicoDto dto) {
         validaCpf(dto.getCpf());
         validaEmail(dto.getEmail());
+        dto.setSenha(encoder.encode(dto.getSenha()));
 
         var tecnico =  new Tecnico(dto);
         return repository.save(tecnico);
@@ -58,7 +63,7 @@ public class TecnicoService {
         tecnico.setNome(dto.getNome());
         tecnico.setCpf(dto.getCpf());
         tecnico.setEmail(dto.getEmail());
-        tecnico.setSenha(dto.getSenha());
+        tecnico.setSenha(encoder.encode(dto.getSenha()));
 
         return repository.save(tecnico);
     }

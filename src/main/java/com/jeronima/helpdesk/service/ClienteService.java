@@ -6,6 +6,7 @@ import com.jeronima.helpdesk.exceptions.DataIntegrityViolationException;
 import com.jeronima.helpdesk.exceptions.ObjectNotFoundException;
 import com.jeronima.helpdesk.repository.ClienteRepository;
 import com.jeronima.helpdesk.repository.PessoaRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +16,13 @@ import java.util.stream.Collectors;
 public class ClienteService {
     private final ClienteRepository repository;
     private final PessoaRepository pessoaRepository;
+    private final BCryptPasswordEncoder encoder;
 
-    public ClienteService(ClienteRepository repository, PessoaRepository pessoaRepository) {
+    public ClienteService(ClienteRepository repository, PessoaRepository pessoaRepository,
+                          BCryptPasswordEncoder encoder) {
         this.repository = repository;
         this.pessoaRepository = pessoaRepository;
+        this.encoder = encoder;
     }
 
     public Cliente findById(Integer id){
@@ -34,6 +38,7 @@ public class ClienteService {
     public Cliente create(ClienteDto dto) {
         validaCpf(dto.getCpf());
         validaEmail(dto.getEmail());
+        dto.setSenha(encoder.encode(dto.getSenha()));
 
         var cliente =  new Cliente(dto);
         return repository.save(cliente);
@@ -58,7 +63,7 @@ public class ClienteService {
         cliente.setNome(dto.getNome());
         cliente.setCpf(dto.getCpf());
         cliente.setEmail(dto.getEmail());
-        cliente.setSenha(dto.getSenha());
+        cliente.setSenha(encoder.encode(dto.getSenha()));
 
         return repository.save(cliente);
     }
