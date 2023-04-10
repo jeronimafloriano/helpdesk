@@ -54,10 +54,12 @@ public class AuthenticationService {
 
     public RespostaAutenticacaoDto autenticar(@RequestBody AutenticacaoDto requisicao){
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(requisicao.getEmail(), requisicao.getPassword())
+                new UsernamePasswordAuthenticationToken(requisicao.getEmail(), requisicao.getSenha())
         );
-
-        Usuario usuario = usuarioRepository.findByEmail(requisicao.getEmail()).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
+        
+        Usuario usuario = usuarioRepository.findByEmail(
+                requisicao.getEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
 
         String token = jwtService.generateToken(usuario);
 

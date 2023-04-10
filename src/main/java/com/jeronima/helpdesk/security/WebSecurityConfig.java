@@ -40,7 +40,7 @@ public class WebSecurityConfig {
                     .antMatchers("/h2-console/**").permitAll()
                     .antMatchers("/autenticacao/**").permitAll()
                 .anyRequest().authenticated()
-                .and()
+                .and().cors().and().csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //não armazenar estado/sessão
                 .and().authenticationProvider(authenticationProvider)
@@ -55,6 +55,5 @@ public class WebSecurityConfig {
 
         return http.build();
     }
-
 
 }

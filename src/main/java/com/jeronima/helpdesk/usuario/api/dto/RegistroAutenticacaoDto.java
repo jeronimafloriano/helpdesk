@@ -8,7 +8,7 @@ public class RegistroAutenticacaoDto {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.senha = password;
     }
 
     public RegistroAutenticacaoDto(){}
@@ -16,7 +16,7 @@ public class RegistroAutenticacaoDto {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
+    private String senha;
 
     public String getFirstName() {
         return firstName;
@@ -43,10 +43,10 @@ public class RegistroAutenticacaoDto {
     }
 
     public String getPassword() {
-        return password;
+        return senha;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.senha = password;
     }
 }

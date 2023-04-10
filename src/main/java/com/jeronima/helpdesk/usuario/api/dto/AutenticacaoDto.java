@@ -5,11 +5,11 @@ package com.jeronima.helpdesk.usuario.api.dto;
 public class AutenticacaoDto {
 
     private String email;
-    private String password;
+    private String senha;
 
-    public AutenticacaoDto(String email, String password) {
+    public AutenticacaoDto(String email, String senha) {
         this.email = email;
-        this.password = password;
+        this.senha = senha;
     }
 
     public AutenticacaoDto(){}
@@ -22,12 +22,12 @@ public class AutenticacaoDto {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
 

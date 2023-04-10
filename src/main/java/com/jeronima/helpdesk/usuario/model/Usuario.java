@@ -18,7 +18,7 @@ public class Usuario implements UserDetails {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.senha = password;
         this.role = role;
     }
 
@@ -29,7 +29,7 @@ public class Usuario implements UserDetails {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
+    private String senha;
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -88,11 +88,11 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return senha;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.senha = password;
     }
 
     public Role getRole() {
@@ -112,7 +112,7 @@ public class Usuario implements UserDetails {
         private String firstName;
         private String lastName;
         private String email;
-        private String password;
+        private String senha;
         private Role role;
 
         UsuarioBuilder() {
@@ -139,7 +139,7 @@ public class Usuario implements UserDetails {
         }
 
         public UsuarioBuilder password(final String password) {
-            this.password = password;
+            this.senha = password;
             return this;
         }
 
@@ -149,11 +149,14 @@ public class Usuario implements UserDetails {
         }
 
         public Usuario build() {
-            return new Usuario(this.id, this.firstName, this.lastName, this.email, this.password, this.role);
+            return new Usuario(this.id, this.firstName, this.lastName, this.email,
+                    this.senha, this.role);
         }
 
         public String toString() {
-            return "Usuario.UsuarioBuilder(id=" + this.id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", password=" + this.password + ", role=" + this.role + ")";
+            return "Usuario.UsuarioBuilder(id=" + this.id + ", firstName=" +
+                    this.firstName + ", lastName=" + this.lastName + ", email=" +
+                    this.email + ", password=" + this.senha + ", role=" + this.role + ")";
         }
     }
 }
