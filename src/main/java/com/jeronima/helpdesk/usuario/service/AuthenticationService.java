@@ -56,7 +56,7 @@ public class AuthenticationService {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(requisicao.getEmail(), requisicao.getSenha())
         );
-        
+
         Usuario usuario = usuarioRepository.findByEmail(
                 requisicao.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
